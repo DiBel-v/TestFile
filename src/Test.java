@@ -30,6 +30,9 @@ public class Test {
                 //заполняем коллекцию значениями строки
                 if (matcher.matches()==true){
                     String[] lineSpl = line.split(";");
+                    if ((Integer.parseInt(lineSpl[0])>Integer.MAX_VALUE) || (Integer.parseInt(lineSpl[1])>Integer.MAX_VALUE)){
+                        throw new NumberFormatException("Number too high");
+                    }
                     int userId = Integer.parseInt(lineSpl[0]);
                     int count = Integer.parseInt(lineSpl[1]);
                     String countryName = lineSpl[2];
@@ -76,6 +79,8 @@ public class Test {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
